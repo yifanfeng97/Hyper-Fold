@@ -82,7 +82,7 @@ Evaluate with `scripts/eval_ap.py` (AP@IoU 0.3/0.5) and `scripts/eval_dcc_dca.py
 
 Pocket detection (all methods trained on UniSite-DS only; HOLO4K-sc / COACH420 are zero-shot; DCC/DCA are top-n success rates at 4 Å):
 
-| Method | UniSite-DS AP@0.3 | UniSite-DS AP@0.5 | HOLO4K-sc AP@0.3 | DCC | DCA | COACH420 AP@0.3 | DCC | DCA |
+| Method | UniSite-DS AP@0.3 | UniSite-DS AP@0.5 | HOLO4K-sc AP@0.3 | HOLO4K-sc DCC | HOLO4K-sc DCA | COACH420 AP@0.3 | COACH420 DCC | COACH420 DCA |
 |---|---|---|---|---|---|---|---|---|
 | Fpocket | 0.184 | 0.102 | 0.271 | 0.308 | 0.438 | 0.211 | 0.271 | 0.411 |
 | Fpocket-rescore | 0.508 | 0.235 | 0.590 | 0.518 | 0.765 | 0.560 | 0.441 | 0.711 |
