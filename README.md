@@ -47,10 +47,10 @@ All models are **purely structural** — the input is the residue type and Cα c
 | `HyperFoldPocket` | pocket detection | + bi-level neck, 50 PPN-anchored queries, transformer decoder, CDN |
 
 <div align="center">
-  <img src="assets/pocket_pipeline.png" alt="HyperFoldPocket architecture" width="100%" />
+  <img src="assets/pocket_pipeline.png" alt="Hyper-Fold-Pocket architecture" width="100%" />
 </div>
 
-*HyperFoldPocket: the residue-level backbone plus a set-prediction detection head — a pocket proposal network (PPN) anchoring 50 queries, a 4-layer transformer decoder with 3D Fourier positional encoding, and contrastive denoising (CDN) training.*
+*Hyper-Fold-Pocket: the residue-level backbone plus a set-prediction detection head — a pocket proposal network (PPN) anchoring 50 queries, a 4-layer transformer decoder with 3D Fourier positional encoding, and contrastive denoising (CDN) training.*
 
 ## Quick start
 
@@ -61,7 +61,7 @@ python scripts/predict.py --pdb examples/1qbuA.pdb   # or any PDB of yours
 ```
 
 <div align="center">
-  <img src="examples/1qbuA_panel.png" alt="HyperFoldPocket prediction on 1qbuA" width="100%" />
+  <img src="examples/1qbuA_panel.png" alt="Hyper-Fold-Pocket prediction on 1qbuA" width="100%" />
 </div>
 
 *Left: surface colored TP green / FP blue / FN red. Right: predicted pocket (violet) wraps the co-crystallized ligand (orange). More in [examples/](examples/README.md).*
@@ -82,17 +82,17 @@ Evaluate with `scripts/eval_ap.py` (AP@IoU 0.3/0.5) and `scripts/eval_dcc_dca.py
 
 Pocket detection (all methods trained on UniSite-DS only; HOLO4K-sc / COACH420 are zero-shot; DCC/DCA are top-n success rates at 4 Å):
 
-| Method | UniSite-DS AP@0.3 | AP@0.5 | HOLO4K-sc AP@0.3 | DCC | DCA | COACH420 AP@0.3 | DCC | DCA |
+| Method | UniSite-DS AP@0.3 | UniSite-DS AP@0.5 | HOLO4K-sc AP@0.3 | DCC | DCA | COACH420 AP@0.3 | DCC | DCA |
 |---|---|---|---|---|---|---|---|---|
 | Fpocket | 0.184 | 0.102 | 0.271 | 0.308 | 0.438 | 0.211 | 0.271 | 0.411 |
 | Fpocket-rescore | 0.508 | 0.235 | 0.590 | 0.518 | 0.765 | 0.560 | 0.441 | 0.711 |
 | P2Rank | 0.506 | 0.216 | 0.601 | 0.530 | <u>0.819</u> | 0.619 | 0.464 | 0.741 |
-| DeepPocket | 0.427 | 0.233 | 0.542 | 0.493 | 0.737 | 0.518 | 0.396 | 0.676 |
+| Deep-Pocket | 0.427 | 0.233 | 0.542 | 0.493 | 0.737 | 0.518 | 0.396 | 0.676 |
 | GrASP | 0.447 | 0.285 | 0.667 | 0.513 | 0.742 | 0.715 | 0.485 | <u>0.762</u> |
 | VN-EGNN | 0.162 | 0.071 | 0.261 | <u>0.586</u> | 0.700 | 0.264 | <u>0.545</u> | 0.753 |
 | UniSite-1D | 0.512 | 0.303 | 0.687 | 0.554 | 0.769 | 0.592 | 0.455 | 0.735 |
 | UniSite-3D | <u>0.560</u> | <u>0.384</u> | <u>0.709</u> | 0.572 | 0.788 | <u>0.720</u> | 0.470 | 0.738 |
-| **HyperFoldPocket (ours)** | **0.617** | **0.467** | **0.735** | **0.681** | **0.827** | **0.768** | **0.563** | **0.786** |
+| **Hyper-Fold-Pocket (ours)** | **0.617** | **0.467** | **0.735** | **0.681** | **0.827** | **0.768** | **0.563** | **0.786** |
 
 EC (Fmax@50% / AUPR@95): **0.789 / 0.874** · Fold / superfamily / family: **0.578 / 0.794 / 0.995**
 
