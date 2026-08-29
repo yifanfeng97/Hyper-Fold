@@ -1,0 +1,50 @@
+# Hyper-Fold-Pocket training configuration
+# Reproduces the paper's main pocket-detection model (Table 2-3):
+# Hyper-Fold backbone (6 Fold-Conv blocks, width 512, rank K=8,
+# radii (8,8,8,10,10,10) Å, windows (17,17,17,21,21,21)), two-scale readout
+# of blocks {3, 6}, bi-level neck (512->256), 50 PPN-anchored queries,
+# 4-layer decoder, contrastive denoising (CDN).
+
+data:
+  pkl_dir: datasets/unisite-ds/pkl_files
+  train_csv: datasets/unisite-ds/pkl_files/train_0.9.csv
+  test_csv: datasets/unisite-ds/pkl_files/test_0.9.csv
+  graph_cache: datasets/unisite-ds/graph_cache_v2
+  lengths_csv: datasets/unisite-ds/graph_cache_v2/lengths.csv
+  max_seq_len: 800
+
+model:
+  node_embed_size: 256
+  num_queries: 50
+  num_classes: 1
+  no_heads: 8
+  dropout: 0.1
+  dec_layers: 4
+  dim_feedforward: 1024
+  k_small: 8                # rank K of the Fold-Conv kernel
+  readout_blocks: [3, 6]    # 1-indexed, paper notation
+  matcher: { cost_class: 2.0, cost_mask: 5.0, cost_dice: 5.0 }
+  cdn:
+    dn_per_gt: 2            # 1 clean copy + 1 lightly noised copy
+    dn_noise_feat: 0.5
+    dn_noise_xyz: 2.0       # Angstrom
+    dn_neg_per_gt: 1        # contrastive negatives (2x feat / 3x xyz noise)
+    max_dn: 32
+
+loss_weights: { cls: 2.0, mask: 5.0, dice: 5.0, res: 2.0 }
+
+train:
+  epochs: 40
+  batch_size: 16
+  eval_batch_size: 8
+  lr: 2.0e-4
+  warmup_epochs: 3
+  weight_decay: 0.05        # only on params with >= 2 dims
+  clip_grad: 0.5
+  ema_decay: 0.999
+  coord_noise: 0.2          # Gaussian noise std (Angstrom) on CA coords
+  eval_every: 2
+  num_workers: 8
+  seed: 42
+
+output_dir: train_outputs/hyperfold_pocket

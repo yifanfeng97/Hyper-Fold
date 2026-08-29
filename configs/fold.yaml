@@ -1,0 +1,46 @@
+# Hyper-Fold-Deep fold classification recipe (SCOPe 1.75 / Fold3D).
+#
+# Bottleneck base width 16 (20.6M params), SGD lr 1e-3, momentum 0.9,
+# wd 5e-4, batch 8, 400 epochs, 10-epoch linear warmup + step LR decay
+# (milestones 100/300, gamma 0.1), label smoothing 0.1, EMA 0.999, AMP,
+# grad clip 10, and structure-forcing augmentation (Gaussian coordinate
+# noise sigma = 0.15 Angstrom, residue-type masking p = 0.15).
+#
+# Sequence window: fold classification uses l = 5 (a wide sequence window
+# overfits this task); the EC recipe uses l = 21 (see configs/ec.yaml).
+model:
+  name: hyperfold_deep
+  base_width: 16.0  # 20.6M params
+  l: 5  # fold classification value; use 21 for EC
+
+data_dir: data/fold3d/new_fold3d
+num_classes: 1195
+
+num_epochs: 400
+batch_size: 8
+lr: 1.0e-3
+momentum: 0.9
+weight_decay: 5.0e-4
+optimizer: sgd
+lr_schedule: step
+lr_milestones: [100, 300]
+lr_gamma: 0.1
+warmup_epochs: 10
+label_smoothing: 0.1
+
+# Structure-forcing augmentation (train split only).
+noise_std: 0.15
+mask_prob: 0.15
+
+workers: 4
+seed: 0
+gpu: 0
+
+ckpt_path: checkpoints/fold_hyperfold_deep/best.pth
+log_path: logs/fold_hyperfold_deep.log
+
+ema_decay: 0.999
+eval_interval: 1
+amp: true
+compile: true
+clip_grad_norm: 10.0

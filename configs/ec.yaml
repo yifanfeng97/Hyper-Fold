@@ -1,0 +1,41 @@
+# Hyper-Fold EC-number prediction recipe (EnzymeCommission benchmark).
+#
+# AdamW lr 1e-4, wd 0, batch 16, 500 epochs, 10-epoch linear warmup + cosine
+# decay, EMA 0.999, AMP, grad clip 10, per-class-weighted BCE-with-logits.
+#
+# The default model below is the flat 6-block Hyper-Fold (7.7M params,
+# 500 epochs). Hyper-Fold-Deep on EC (19.3M params, Fmax@50% 0.787) uses the
+# same recipe with 300 epochs and bottleneck base width 16:
+#   model:
+#     name: hyperfold_deep
+#     base_width: 16.0
+#     l: 21
+#   num_epochs: 300
+model:
+  name: hyperfold  # flat 6-block Hyper-Fold: width 512, readout blocks {3,6}
+  rs: [8.0, 8.0, 8.0, 10.0, 10.0, 10.0]
+  ls: [17, 17, 17, 21, 21, 21]
+
+data_dir: data/EnzymeCommission_cdconv
+num_classes: 538
+
+num_epochs: 500
+batch_size: 16
+lr: 1.0e-4
+weight_decay: 0.0
+optimizer: adamw
+lr_schedule: cosine
+warmup_epochs: 10
+
+workers: 4
+seed: 0
+gpu: 0
+
+ckpt_path: checkpoints/ec_hyperfold/best.pth
+log_path: logs/ec_hyperfold.log
+
+ema_decay: 0.999
+eval_interval: 1
+amp: true
+compile: true
+clip_grad_norm: 10.0
