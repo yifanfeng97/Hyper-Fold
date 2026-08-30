@@ -42,9 +42,9 @@ All models are **purely structural** — the input is the residue type and Cα c
 
 | Model | Task | Recipe |
 |---|---|---|
-| `HyperFold` | EC number | 6 Fold-Conv blocks, width 512 |
-| `HyperFoldDeep` | fold classification | 4 stages, 256→2048, residue pooling |
-| `HyperFoldPocket` | pocket detection | + bi-level neck, 50 PPN-anchored queries, transformer decoder, CDN |
+| Hyper-Fold | EC number | 6 Fold-Conv blocks, width 512 |
+| Hyper-Fold-Deep | fold classification | 4 stages, 256→2048, residue pooling |
+| Hyper-Fold-Pocket | pocket detection | + bi-level neck, 50 PPN-anchored queries, transformer decoder, CDN |
 
 <div align="center">
   <img src="assets/pocket_pipeline.png" alt="Hyper-Fold-Pocket architecture" width="100%" />

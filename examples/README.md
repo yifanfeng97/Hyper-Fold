@@ -1,6 +1,6 @@
 # Examples
 
-Three sample proteins from the COACH420 benchmark with HyperFoldPocket
+Three sample proteins from the COACH420 benchmark with Hyper-Fold-Pocket
 predictions produced by the released checkpoint
 (`checkpoints/hyperfold_pocket_unisite_ds.pth`).
 
