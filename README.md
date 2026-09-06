@@ -7,10 +7,19 @@
 </p>
 
 <p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/Python-%E2%89%A53.10-3776AB?logo=python&logoColor=white">
-  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-%E2%89%A52.0-EE4C2C?logo=pytorch&logoColor=white">
-  <img alt="Dependencies" src="https://img.shields.io/badge/PyG%20%2F%20torchdrug-not%20required-4daf4a">
-  <img alt="License" src="https://img.shields.io/badge/License-MIT-purple">
+  <a href="https://arxiv.org/abs/2608.29207">
+    <img src="https://img.shields.io/badge/arXiv-2608.29207-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white&labelColor=1a1a2e" alt="arXiv">
+  </a>
+  <a href="https://python.org">
+    <img src="https://img.shields.io/badge/python-3.10%2B-3776ab?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e" alt="Python">
+  </a>
+  <a href="https://pytorch.org">
+    <img src="https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white&labelColor=1a1a2e" alt="PyTorch">
+  </a>
+  <img src="https://img.shields.io/badge/PyG%20%2F%20torchdrug-not%20required-4daf4a?style=for-the-badge&labelColor=1a1a2e" alt="No PyG / torchdrug">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-8b5cf6?style=for-the-badge&labelColor=1a1a2e" alt="License">
+  </a>
 </p>
 
 <p align="center">
